@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pokemon;
+use App\Models\Trainer;
 use Illuminate\Http\Request;
 
 class PokemonController extends Controller
@@ -10,12 +11,14 @@ class PokemonController extends Controller
     public function index()
     {
         $pokemons = Pokemon::all();
-        return view('pokemons.index', compact('pokemons'));
+        $trainers = Trainer::all();
+        return view('pokemons.index', compact(['pokemons', 'trainers']));
     }
     
     public function create()
     {
-        return view('pokemons.create');
+        $trainers = Trainer::all();
+        return view('pokemons.create',compact('trainers'));
     }
     
     public function store(Request $request)
@@ -25,9 +28,10 @@ class PokemonController extends Controller
     }
     
     public function edit($id)
-    {
+    {   
+        $trainers = Trainer::all();
         $pokemons = Pokemon::findOrFail($id);
-        return view('pokemons.edit', compact('pokemons'));
+        return view('pokemons.edit',compact(['pokemons', 'trainers']));
     }
     
     public function update(Request $request, $id)

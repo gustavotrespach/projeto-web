@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class Pokemon extends Model
 {
     use HasFactory;
@@ -12,6 +14,14 @@ class Pokemon extends Model
         'nome',
         'tipo',
         'pontosDePoder',
+        'trainer_id',
 
     ];
+
+    public function trainer(): BelongsTo
+    {
+        return $this->belongsTo(Trainer::class);
+    }
 }
+
+
