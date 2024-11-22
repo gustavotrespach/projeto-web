@@ -23,6 +23,7 @@ class PokemonController extends Controller
     
     public function store(Request $request)
     {
+        $image = $request->file('image')->store('images', 'public');
         Pokemon::create($request->all());
         return redirect('pokemons')->with('success', 'Product created successfully.');
     }
@@ -36,6 +37,7 @@ class PokemonController extends Controller
     
     public function update(Request $request, $id)
     {
+        $image = $request->file('image')->store('images', 'public');
         $pokemons = Pokemon::findOrFail($id);
         $pokemons->update($request->all());
         return redirect('pokemons')->with('success', 'Product updated successfully.');

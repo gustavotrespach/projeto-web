@@ -14,6 +14,7 @@ class Pokemon extends Model
         'nome',
         'tipo',
         'pontosDePoder',
+        'image',
         'trainer_id',
 
     ];
